@@ -8,7 +8,8 @@ module.exports = {
   output: {
     path: path.join(__dirname, "dist"),
     publicPath: "/",
-    filename: "[name].js"
+    filename: "[name].js",
+    hashFunction: "sha256"
   },
   target: "web",
   devtool: "source-map",
