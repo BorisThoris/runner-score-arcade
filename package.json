@@ -1,7 +1,7 @@
 {
-  "name": "standalone-game-js",
+  "name": "phaser-endless-dodger-leaderboard",
   "version": "1.0.0",
-  "description": "",
+  "description": "Phaser 3 endless dodger with hazards, power-ups, touch controls, Express hosting, and Kinvey-style leaderboard integration.",
   "main": "index.js",
   "scripts": {
     "test": "mocha test",

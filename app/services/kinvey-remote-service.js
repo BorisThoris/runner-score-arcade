@@ -3,8 +3,8 @@ import $ from "jquery";
 let remote = (() => {
   const BASE_URL = "https://baas.kinvey.com/";
   const BASE_URL2 = "http://localhost:52931/api/";
-  const APP_KEY = "kid_BJ9QNaKBE"; // APP KEY HERE
-  const APP_SECRET = "005b16d12ebe459ba6c9b7d261bb1818"; // APP SECRET HERE
+  const APP_KEY = "YOUR_KINVEY_APP_KEY";
+  const APP_SECRET = "YOUR_KINVEY_APP_SECRET";
 
   function makeAuth(type) {
     return type === "basic"
