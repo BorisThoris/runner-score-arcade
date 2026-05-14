@@ -1,4 +1,4 @@
-# Phaser Endless Dodger Leaderboard
+# Runner Score Arcade
 
 Historical JavaScript/Phaser arcade game built as a standalone browser game with an Express server and Kinvey-style leaderboard integration.
 

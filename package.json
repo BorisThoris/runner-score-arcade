@@ -1,5 +1,5 @@
 {
-  "name": "phaser-endless-dodger-leaderboard",
+  "name": "runner-score-arcade",
   "version": "1.0.0",
   "description": "Phaser 3 endless dodger with hazards, power-ups, touch controls, Express hosting, and Kinvey-style leaderboard integration.",
   "main": "index.js",
