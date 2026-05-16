@@ -51,6 +51,17 @@ npm run build
 npm run publish-demo
 ```
 
+## Demo run
+
+```bash
+npm install
+npm run build
+$env:PORT = "4107"
+npm start
+```
+
+Open `http://127.0.0.1:4107/`. Without `PORT`, the Express server defaults to `5000`.
+
 ## Security / Backend Note
 
 The original student project used a Kinvey backend. Historical app keys/secrets have been removed from the current source and replaced with placeholders. To run backend-backed score flows, provide your own Kinvey-compatible app key and secret in `app/services/kinvey-remote-service.js`.
@@ -60,3 +71,16 @@ Because this is an archived portfolio project, the original hosted backend may n
 ## Status
 
 Archived portfolio project. The goal of this repository is to show early Phaser/JavaScript game work, not to represent current production practices.
+
+## Cloudflare Pages
+
+- Pages project name: `runner-score-arcade`
+- GitHub repository: `BorisThoris/runner-score-arcade`
+- Production branch: `master`
+- Root directory: `.`
+- Build command: `npm run build`
+- Build output directory: `dist`
+- Environment variable: `NODE_VERSION=22.16.0`
+- Public URL target: `https://runner-score-arcade.pages.dev/`
+
+Do not enable Cloudflare Access for the demo deployment. Leave frame-blocking headers unset so the portfolio can iframe the public build.

@@ -8,7 +8,6 @@ import CollisionsHelper from "../help-scripts/collisionsHelper";
 import spriteSheethelper from "../help-scripts/loadSpriteSheets";
 import imageHelper from "../help-scripts/loadImages";
 import animationsHelper from "../help-scripts/animationsHelper";
-import auth from "../services/auth-service.js";
 import powerUpTextHelper from "../help-scripts/powerUpText";
 
 const style2 = {
@@ -27,6 +26,17 @@ const text5 = { x: 1010, y: 266 };
 const text6 = { x: 1010, y: 316 };
 const text7 = { x: 1010, y: 366 };
 const text8 = { x: 1010, y: 416 };
+const demoPlayerName = "Demo";
+const demoScores = [
+  { _id: "demo-1", name: "Alex", score: 980 },
+  { _id: "demo-2", name: "Mira", score: 860 },
+  { _id: "demo-3", name: "Noah", score: 740 },
+  { _id: "demo-4", name: "Ivy", score: 680 },
+  { _id: "demo-5", name: "Kai", score: 590 },
+  { _id: "demo-6", name: "Lena", score: 520 },
+  { _id: "demo-7", name: "Sam", score: 430 },
+  { _id: "demo-8", name: "Bo", score: 360 }
+];
 
 export default class DodgeGame extends Phaser.Scene {
   constructor() {
@@ -83,7 +93,7 @@ export default class DodgeGame extends Phaser.Scene {
     this.load.audio("musicBack", musicBack);
     this.load.audio("gameOver", gameOver);
     this.load.audio("ooGnome", ooGnome);
-    this.enterName();
+    this.yourName = demoPlayerName;
   }
 
   addLive() {
@@ -105,7 +115,9 @@ export default class DodgeGame extends Phaser.Scene {
       name = window.prompt("Enter Your Nickname");
     }
 
-    if (name.length > 8) {
+    if (!name) {
+      this.yourName = demoPlayerName;
+    } else if (name.length > 8) {
       this.enterName(true);
     } else if (name.length === 0) {
       this.enterName(false);
@@ -153,31 +165,25 @@ export default class DodgeGame extends Phaser.Scene {
   }
 
   initialAuth() {
-    auth
-      .login("sad", "sad")
-      .then(userData => {
-        auth.saveSession(userData);
-        this.updateScores();
-        var d = new Date();
-        auth.postLogData({ name: this.yourName, date: d });
-        console.log(":) logged in");
-      })
-      .catch(() => console.log(":( log in error"));
+    this.scores = demoScores.map(score => ({ ...score }));
+    this.updateScoreText();
   }
 
   updateScores() {
-    auth.getAllScores().then(data => {
-      data.sort((a, b) => Number(b.score) - Number(a.score));
-      this.scores = data;
-      this.score1.setText(`${data[0].name}: ${data[0].score}`);
-      this.score2.setText(`${data[1].name}: ${data[1].score}`);
-      this.score3.setText(`${data[2].name}: ${data[2].score}`);
-      this.score4.setText(`${data[3].name}: ${data[3].score}`);
-      this.score5.setText(`${data[4].name}: ${data[4].score}`);
-      this.score6.setText(`${data[5].name}: ${data[5].score}`);
-      this.score7.setText(`${data[6].name}: ${data[6].score}`);
-      this.score8.setText(`${data[7].name}: ${data[7].score}`);
-    });
+    this.scores.sort((a, b) => Number(b.score) - Number(a.score));
+    this.updateScoreText();
+  }
+
+  updateScoreText() {
+    if (!this.score1 || !this.scores) return;
+    this.score1.setText(`${this.scores[0].name}: ${this.scores[0].score}`);
+    this.score2.setText(`${this.scores[1].name}: ${this.scores[1].score}`);
+    this.score3.setText(`${this.scores[2].name}: ${this.scores[2].score}`);
+    this.score4.setText(`${this.scores[3].name}: ${this.scores[3].score}`);
+    this.score5.setText(`${this.scores[4].name}: ${this.scores[4].score}`);
+    this.score6.setText(`${this.scores[5].name}: ${this.scores[5].score}`);
+    this.score7.setText(`${this.scores[6].name}: ${this.scores[6].score}`);
+    this.score8.setText(`${this.scores[7].name}: ${this.scores[7].score}`);
   }
 
   checkMin() {
@@ -246,7 +252,6 @@ export default class DodgeGame extends Phaser.Scene {
     this.ooGnome = this.sound.add("ooGnome");
 
     this.music.play();
-    this.initialAuth();
     this.animationsHelper.createAnimations(this.anims);
 
     //Background
@@ -317,6 +322,7 @@ export default class DodgeGame extends Phaser.Scene {
     this.addTouchControls(this.down, this.cursors.down);
 
     this.generateTexts();
+    this.initialAuth();
 
     //Creating this.player
     this.player = this.physics.add.sprite(
@@ -538,15 +544,9 @@ export default class DodgeGame extends Phaser.Scene {
       let minScore = this.checkMin();
 
       if (score > minScore.score) {
-        let data = { score: Number(score), name: this.yourName };
-        auth
-          .createScore(data)
-          .then(userData => {
-            auth.deleteScore(minScore.id);
-
-            this.updateScores();
-          })
-          .catch(err => {});
+        this.scores = this.scores.filter(item => item._id !== minScore.id);
+        this.scores.push({ _id: `demo-${Date.now()}`, score: Number(score), name: this.yourName });
+        this.updateScores();
       }
 
       this.name.destroy(), this.textEntry.destroy(), this.resetVars();
