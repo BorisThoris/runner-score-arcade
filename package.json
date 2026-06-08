@@ -14,7 +14,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "browserify-middleware": "^8.1.1",
     "enchilada": "^0.13.0",
     "esm": "^3.2.22",
