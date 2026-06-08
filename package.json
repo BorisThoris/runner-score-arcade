@@ -18,7 +18,7 @@
     "browserify-middleware": "^8.1.1",
     "enchilada": "^0.13.0",
     "esm": "^3.2.22",
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "express-browserify": "^1.0.3",
     "express-handlebars": "^3.0.0",
     "jquery": "^3.4.1",
