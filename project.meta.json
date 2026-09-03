@@ -1,0 +1,176 @@
+{
+  "$schema": "./scripts/project.meta.schema.json",
+  "schemaVersion": 1,
+  "generatedAt": "2026-09-03T20:39:08.418Z",
+  "generatedBy": "scripts/generate-project-meta.mjs",
+  "identity": {
+    "slug": "runner-score-arcade",
+    "repoName": "runner-score-arcade",
+    "packageName": "runner-score-arcade",
+    "version": "1.0.0",
+    "title": "Runner Score Arcade",
+    "subtitle": "Historical Phaser arcade game",
+    "description": "An early Phaser 3 runner with hazards, power-ups, touch controls, Express hosting, and a demo-safe local leaderboard flow.",
+    "tags": [
+      "Phaser",
+      "Express",
+      "Webpack",
+      "Archive"
+    ],
+    "accent": "#f97316",
+    "classification": "web-app",
+    "showcaseTier": "showcase",
+    "showcaseOrder": 7
+  },
+  "links": {
+    "deploymentUrl": "https://runner-score-arcade-git.pages.dev/",
+    "localUrl": "http://127.0.0.1:4107/",
+    "repository": "https://github.com/BorisThoris/runner-score-arcade"
+  },
+  "runtime": {
+    "packageManager": "npm",
+    "buildCommand": "npm run build",
+    "buildOutput": "dist",
+    "runCommand": "npm start",
+    "devPort": 4107,
+    "fallbackCommand": "npm start",
+    "fallbackEnv": {
+      "PORT": "4107"
+    },
+    "scripts": [
+      "test",
+      "build",
+      "start",
+      "your-custom-script",
+      "deploy",
+      "publish-demo",
+      "meta",
+      "meta:check"
+    ]
+  },
+  "capture": {
+    "route": "/"
+  },
+  "media": {
+    "source": "portfolio-capture",
+    "directory": "C:/Users/Gaming PC/Desktop/Repos/portfolio/public/project-shots/runner-score-arcade/latest",
+    "primary": "/project-shots/runner-score-arcade/latest/card.jpg",
+    "images": [
+      {
+        "profile": "card",
+        "file": "card.jpg",
+        "path": "/project-shots/runner-score-arcade/latest/card.jpg",
+        "bytes": 159583,
+        "width": 1600,
+        "height": 900,
+        "capturedAt": "2026-08-27T12:14:16.666Z"
+      },
+      {
+        "profile": "desktop",
+        "file": "desktop.jpg",
+        "path": "/project-shots/runner-score-arcade/latest/desktop.jpg",
+        "bytes": 151295,
+        "width": 1440,
+        "height": 900,
+        "capturedAt": "2026-08-27T12:14:19.116Z"
+      },
+      {
+        "profile": "full",
+        "file": "full.jpg",
+        "path": "/project-shots/runner-score-arcade/latest/full.jpg",
+        "bytes": 133267,
+        "width": 1440,
+        "height": 900,
+        "capturedAt": "2026-08-27T12:14:23.694Z"
+      },
+      {
+        "profile": "main",
+        "file": "main.png",
+        "path": "/project-shots/runner-score-arcade/main.png",
+        "bytes": 239671,
+        "width": 1440,
+        "height": 900,
+        "capturedAt": "2026-05-18T09:17:59.226Z"
+      },
+      {
+        "profile": "mobile",
+        "file": "mobile.jpg",
+        "path": "/project-shots/runner-score-arcade/latest/mobile.jpg",
+        "bytes": 65796,
+        "width": 430,
+        "height": 932,
+        "capturedAt": "2026-08-27T12:14:21.547Z"
+      }
+    ]
+  },
+  "stack": {
+    "framework": "Phaser",
+    "language": "JavaScript",
+    "runtimeTargets": [
+      "node-server"
+    ],
+    "libraries": [
+      {
+        "name": "phaser",
+        "version": "^3.15.1"
+      },
+      {
+        "name": "webpack",
+        "version": "^4.30.0"
+      },
+      {
+        "name": "express",
+        "version": "^4.16.4"
+      }
+    ],
+    "testing": [
+      "mocha"
+    ],
+    "dependencyCount": 13,
+    "devDependencyCount": 13
+  },
+  "metrics": {
+    "sourceFiles": 27,
+    "testFiles": 0,
+    "sourceLines": 4067,
+    "largestDirectories": [
+      {
+        "directory": "app",
+        "files": 19
+      },
+      {
+        "directory": ".",
+        "files": 6
+      },
+      {
+        "directory": "scripts",
+        "files": 2
+      }
+    ],
+    "hasReadme": true,
+    "hasTests": false,
+    "hasCi": false,
+    "hasDocs": false
+  },
+  "scores": {
+    "priorityScore": 86,
+    "demoabilityScore": 76,
+    "depthScore": 66,
+    "polishScore": 66,
+    "uniquenessScore": 68,
+    "maintenanceScore": 58
+  },
+  "analysisNotes": "Historical Phaser runner with Express hosting and leaderboard flow; demoable but older stack and less polished than current games.",
+  "git": {
+    "branch": "master",
+    "head": "5e27784",
+    "lastCommitDate": "2026-05-16T17:33:34+03:00",
+    "lastCommitSubject": "AI refine runner-score-arcade: Disable debug mode and fix first-run DOM contract",
+    "commitCount": 29,
+    "remote": "https://github.com/BorisThoris/runner-score-arcade.git"
+  },
+  "readme": {
+    "file": "README.md",
+    "heading": "Runner Score Arcade"
+  }
+}
