@@ -58,6 +58,15 @@ export default {
   analysisNotes:
     "Historical Phaser runner with Express hosting and leaderboard flow; demoable but older stack and less polished than current games.",
 
+  // Where the link-preview card lives: the page head that carries the Open
+  // Graph tags, and the static directory the image is published from.
+  social: {
+    "htmlFile": "index.html",
+    "staticDir": "public",
+    "imageName": "og-image.jpg",
+    "imageUrlPath": "/og-image.jpg"
+  },
+
   media: {
     sourceDir: path.join(portfolioRoot, "public", "project-shots", "runner-score-arcade", "latest"),
     publicPathPrefix: "/project-shots/runner-score-arcade/latest",

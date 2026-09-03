@@ -1,3 +1,4 @@
+const fs = require("fs");
 const path = require("path");
 const webpack = require("webpack");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
@@ -50,6 +51,23 @@ module.exports = {
       template: "./index.html",
       filename: "./index.html",
       excludeChunks: ["server"]
-    })
+    }),
+    // Copies ./public verbatim into dist, so files that must keep their name -
+    // the og-image.jpg the link preview points at - survive the build. Written
+    // inline rather than pulling in copy-webpack-plugin for one directory.
+    {
+      apply(compiler) {
+        compiler.hooks.afterEmit.tapAsync("CopyPublicDir", (compilation, callback) => {
+          const source = path.join(__dirname, "public");
+          const destination = compiler.options.output.path;
+          if (!fs.existsSync(source)) return callback();
+          for (const entry of fs.readdirSync(source, { withFileTypes: true })) {
+            if (!entry.isFile()) continue;
+            fs.copyFileSync(path.join(source, entry.name), path.join(destination, entry.name));
+          }
+          callback();
+        });
+      }
+    }
   ]
 };
