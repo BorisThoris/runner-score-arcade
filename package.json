@@ -9,7 +9,9 @@
     "start": "node ./dist/server.js",
     "your-custom-script": "echo npm",
     "deploy": "gh-pages -d dist",
-    "publish-demo": "npm run build && npm run deploy"
+    "publish-demo": "npm run build && npm run deploy",
+    "meta": "node scripts/generate-project-meta.mjs",
+    "meta:check": "node scripts/generate-project-meta.mjs --check"
   },
   "author": "",
   "license": "ISC",
