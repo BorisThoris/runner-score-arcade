@@ -1,7 +1,7 @@
 {
   "$schema": "./scripts/project.meta.schema.json",
   "schemaVersion": 1,
-  "generatedAt": "2026-09-03T20:39:08.418Z",
+  "generatedAt": "2026-09-03T20:45:31.591Z",
   "generatedBy": "scripts/generate-project-meta.mjs",
   "identity": {
     "slug": "runner-score-arcade",
@@ -132,7 +132,7 @@
   "metrics": {
     "sourceFiles": 27,
     "testFiles": 0,
-    "sourceLines": 4067,
+    "sourceLines": 4070,
     "largestDirectories": [
       {
         "directory": "app",
@@ -163,10 +163,10 @@
   "analysisNotes": "Historical Phaser runner with Express hosting and leaderboard flow; demoable but older stack and less polished than current games.",
   "git": {
     "branch": "master",
-    "head": "5e27784",
-    "lastCommitDate": "2026-05-16T17:33:34+03:00",
-    "lastCommitSubject": "AI refine runner-score-arcade: Disable debug mode and fix first-run DOM contract",
-    "commitCount": 29,
+    "head": "6f4ca87",
+    "lastCommitDate": "2026-09-03T23:42:37+03:00",
+    "lastCommitSubject": "Wire up the meta scripts",
+    "commitCount": 31,
     "remote": "https://github.com/BorisThoris/runner-score-arcade.git"
   },
   "readme": {
