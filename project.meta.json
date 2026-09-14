@@ -1,7 +1,7 @@
 {
   "$schema": "./scripts/project.meta.schema.json",
   "schemaVersion": 1,
-  "generatedAt": "2026-09-14T20:52:45.230Z",
+  "generatedAt": "2026-09-14T21:36:22.732Z",
   "generatedBy": "scripts/generate-project-meta.mjs",
   "identity": {
     "slug": "runner-score-arcade",
@@ -138,7 +138,7 @@
   "metrics": {
     "sourceFiles": 31,
     "testFiles": 0,
-    "sourceLines": 5042,
+    "sourceLines": 5053,
     "largestDirectories": [
       {
         "directory": "app",
@@ -155,7 +155,7 @@
     ],
     "hasReadme": true,
     "hasTests": false,
-    "hasCi": false,
+    "hasCi": true,
     "hasDocs": false
   },
   "scores": {
@@ -169,10 +169,10 @@
   "analysisNotes": "Historical Phaser runner with Express hosting and leaderboard flow; demoable but older stack and less polished than current games.",
   "git": {
     "branch": "master",
-    "head": "769b823",
-    "lastCommitDate": "2026-09-14T23:42:45+03:00",
-    "lastCommitSubject": "Add the icon set and the one-command metadata refresh",
-    "commitCount": 35,
+    "head": "a022177",
+    "lastCommitDate": "2026-09-14T23:57:50+03:00",
+    "lastCommitSubject": "Sync the metadata toolkit scripts and regenerate project.meta.json",
+    "commitCount": 36,
     "remote": "https://github.com/BorisThoris/runner-score-arcade.git"
   },
   "readme": {
