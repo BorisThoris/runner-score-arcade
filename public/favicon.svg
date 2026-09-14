@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Runner Score Arcade">
+  <rect width="64" height="64" rx="12" fill="#1c0a02"/>
+  <rect x="12" y="38" width="9" height="14" rx="2" fill="#7c2d12"/>
+  <rect x="27.5" y="28" width="9" height="24" rx="2" fill="#c2410c"/>
+  <rect x="43" y="16" width="9" height="36" rx="2" fill="#f97316"/>
+  <path d="M47.5 6 l2.4 4.9 5.4 .8 -3.9 3.8 .9 5.4 -4.8 -2.5 -4.8 2.5 .9 -5.4 -3.9 -3.8 5.4 -.8 Z" fill="#fde68a"/>
+</svg>

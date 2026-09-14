@@ -1,0 +1,28 @@
+{
+  "name": "Runner Score Arcade",
+  "short_name": "Runner Score",
+  "description": "An early Phaser 3 runner with hazards, power-ups, touch controls, Express hosting, and a demo-safe local leaderboard flow.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#1c0a02",
+  "theme_color": "#1c0a02",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

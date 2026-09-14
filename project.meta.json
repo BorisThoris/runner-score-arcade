@@ -1,7 +1,7 @@
 {
   "$schema": "./scripts/project.meta.schema.json",
   "schemaVersion": 1,
-  "generatedAt": "2026-09-03T21:50:29.852Z",
+  "generatedAt": "2026-09-14T20:41:25.496Z",
   "generatedBy": "scripts/generate-project-meta.mjs",
   "identity": {
     "slug": "runner-score-arcade",
@@ -48,7 +48,10 @@
       "meta:check",
       "shots",
       "social",
-      "social:check"
+      "social:check",
+      "icons",
+      "icons:check",
+      "meta:refresh"
     ]
   },
   "capture": {
@@ -133,9 +136,9 @@
     "devDependencyCount": 13
   },
   "metrics": {
-    "sourceFiles": 29,
+    "sourceFiles": 31,
     "testFiles": 0,
-    "sourceLines": 4549,
+    "sourceLines": 5025,
     "largestDirectories": [
       {
         "directory": "app",
@@ -147,7 +150,7 @@
       },
       {
         "directory": "scripts",
-        "files": 4
+        "files": 6
       }
     ],
     "hasReadme": true,
@@ -166,10 +169,10 @@
   "analysisNotes": "Historical Phaser runner with Express hosting and leaderboard flow; demoable but older stack and less polished than current games.",
   "git": {
     "branch": "master",
-    "head": "2613e44",
-    "lastCommitDate": "2026-09-03T23:46:15+03:00",
-    "lastCommitSubject": "Refresh project metadata",
-    "commitCount": 32,
+    "head": "d7419a8",
+    "lastCommitDate": "2026-09-04T00:53:29+03:00",
+    "lastCommitSubject": "Wire up the shots and social scripts",
+    "commitCount": 34,
     "remote": "https://github.com/BorisThoris/runner-score-arcade.git"
   },
   "readme": {
