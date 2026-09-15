@@ -1,7 +1,7 @@
 {
   "$schema": "./scripts/project.meta.schema.json",
   "schemaVersion": 1,
-  "generatedAt": "2026-09-14T22:24:59.333Z",
+  "generatedAt": "2026-09-15T12:15:31.815Z",
   "generatedBy": "scripts/generate-project-meta.mjs",
   "identity": {
     "slug": "runner-score-arcade",
@@ -9,13 +9,13 @@
     "packageName": "runner-score-arcade",
     "version": "1.0.0",
     "title": "Runner Score Arcade",
-    "subtitle": "Historical Phaser arcade game",
-    "description": "An early Phaser 3 runner with hazards, power-ups, touch controls, Express hosting, and a demo-safe local leaderboard flow.",
+    "subtitle": "Dodg'Em Up Bro: an early Phaser runner",
+    "description": "An early Phaser 3 runner: dodge the falling hazards, grab power-ups, keep your lives and push the score, on keyboard or touch. Served by a small Express app with a demo-safe local leaderboard in place of the original Kinvey backend.",
     "tags": [
+      "Game",
       "Phaser",
-      "Express",
-      "Webpack",
-      "Archive"
+      "Arcade",
+      "Express"
     ],
     "accent": "#f97316",
     "classification": "web-app",
@@ -59,7 +59,7 @@
   },
   "media": {
     "source": "repo-local",
-    "directory": "/home/runner/work/runner-score-arcade/runner-score-arcade/project-media",
+    "directory": "C:/Users/Gaming PC/Desktop/Repos/runner-score-arcade/project-media",
     "primary": "project-media/card.jpg",
     "images": [
       {
@@ -69,7 +69,7 @@
         "bytes": 162736,
         "width": 1600,
         "height": 900,
-        "capturedAt": "2026-09-14T22:24:52.810Z"
+        "capturedAt": "2026-09-14T22:50:26.126Z"
       },
       {
         "profile": "desktop",
@@ -78,7 +78,7 @@
         "bytes": 153740,
         "width": 1440,
         "height": 900,
-        "capturedAt": "2026-09-14T22:24:54.391Z"
+        "capturedAt": "2026-09-14T22:50:26.128Z"
       },
       {
         "profile": "full",
@@ -87,7 +87,7 @@
         "bytes": 137824,
         "width": 1440,
         "height": 916,
-        "capturedAt": "2026-09-14T22:24:57.575Z"
+        "capturedAt": "2026-09-14T22:50:26.129Z"
       },
       {
         "profile": "mobile",
@@ -96,7 +96,7 @@
         "bytes": 65820,
         "width": 430,
         "height": 932,
-        "capturedAt": "2026-09-14T22:24:55.976Z"
+        "capturedAt": "2026-09-14T22:50:26.130Z"
       },
       {
         "profile": "og",
@@ -105,7 +105,7 @@
         "bytes": 121922,
         "width": 1200,
         "height": 630,
-        "capturedAt": "2026-09-14T22:24:59.215Z"
+        "capturedAt": "2026-09-14T22:50:26.132Z"
       }
     ]
   },
@@ -138,7 +138,7 @@
   "metrics": {
     "sourceFiles": 31,
     "testFiles": 0,
-    "sourceLines": 5062,
+    "sourceLines": 5105,
     "largestDirectories": [
       {
         "directory": "app",
@@ -169,11 +169,11 @@
   "analysisNotes": "Historical Phaser runner with Express hosting and leaderboard flow; demoable but older stack and less polished than current games.",
   "git": {
     "branch": "master",
-    "head": "59eab5f",
-    "lastCommitDate": "2026-09-15T01:04:49+03:00",
-    "lastCommitSubject": "Refresh screenshots, card, icons and metadata after every deployment",
-    "commitCount": 38,
-    "remote": "https://github.com/BorisThoris/runner-score-arcade"
+    "head": "68e60f4",
+    "lastCommitDate": "2026-09-15T01:50:26+03:00",
+    "lastCommitSubject": "Let the refresh wait up to 90 minutes for a queued Cloudflare build [meta-bot]",
+    "commitCount": 40,
+    "remote": "https://github.com/BorisThoris/runner-score-arcade.git"
   },
   "readme": {
     "file": "README.md",

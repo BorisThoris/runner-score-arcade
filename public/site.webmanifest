@@ -1,7 +1,7 @@
 {
   "name": "Runner Score Arcade",
   "short_name": "Runner Score",
-  "description": "An early Phaser 3 runner with hazards, power-ups, touch controls, Express hosting, and a demo-safe local leaderboard flow.",
+  "description": "An early Phaser 3 runner: dodge the falling hazards, grab power-ups, keep your lives and push the score, on keyboard or touch. Served by a small Express app with a demo-safe local leaderboard in place of the original Kinvey backend.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",

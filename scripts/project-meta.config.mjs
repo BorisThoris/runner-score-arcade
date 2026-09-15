@@ -18,13 +18,13 @@ export default {
 
   curated: {
     "title": "Runner Score Arcade",
-    "subtitle": "Historical Phaser arcade game",
-    "description": "An early Phaser 3 runner with hazards, power-ups, touch controls, Express hosting, and a demo-safe local leaderboard flow.",
+    "subtitle": "Dodg'Em Up Bro: an early Phaser runner",
+    "description": "An early Phaser 3 runner: dodge the falling hazards, grab power-ups, keep your lives and push the score, on keyboard or touch. Served by a small Express app with a demo-safe local leaderboard in place of the original Kinvey backend.",
     "tags": [
+      "Game",
       "Phaser",
-      "Express",
-      "Webpack",
-      "Archive"
+      "Arcade",
+      "Express"
     ],
     "accent": "#f97316",
     "deploymentUrl": "https://runner-score-arcade-git.pages.dev/",
@@ -62,6 +62,7 @@ export default {
   // Graph tags, and the static directory the image is published from.
   social: {
     "htmlFile": "index.html",
+    "pageTitle": "Dodg'Em Up Bro · Runner Score Arcade",
     "staticDir": "public",
     "imageName": "og-image.jpg",
     "imageUrlPath": "/og-image.jpg"
