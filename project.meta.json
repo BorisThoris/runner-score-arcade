@@ -1,7 +1,7 @@
 {
   "$schema": "./scripts/project.meta.schema.json",
   "schemaVersion": 1,
-  "generatedAt": "2026-09-17T10:21:59.881Z",
+  "generatedAt": "2026-09-17T10:33:53.331Z",
   "generatedBy": "scripts/generate-project-meta.mjs",
   "identity": {
     "slug": "runner-score-arcade",
@@ -59,53 +59,53 @@
   },
   "media": {
     "source": "repo-local",
-    "directory": "C:/Users/Gaming PC/Desktop/Repos/runner-score-arcade/project-media",
+    "directory": "/home/runner/work/runner-score-arcade/runner-score-arcade/project-media",
     "primary": "project-media/card.jpg",
     "images": [
       {
         "profile": "card",
         "file": "card.jpg",
         "path": "project-media/card.jpg",
-        "bytes": 160647,
+        "bytes": 162458,
         "width": 1600,
         "height": 900,
-        "capturedAt": "2026-09-17T10:21:52.732Z"
+        "capturedAt": "2026-09-17T10:33:47.001Z"
       },
       {
         "profile": "desktop",
         "file": "desktop.jpg",
         "path": "project-media/desktop.jpg",
-        "bytes": 149931,
+        "bytes": 153831,
         "width": 1440,
         "height": 900,
-        "capturedAt": "2026-09-17T10:21:54.228Z"
+        "capturedAt": "2026-09-17T10:33:48.552Z"
       },
       {
         "profile": "full",
         "file": "full.jpg",
         "path": "project-media/full.jpg",
-        "bytes": 134384,
+        "bytes": 139264,
         "width": 1440,
         "height": 916,
-        "capturedAt": "2026-09-17T10:21:57.515Z"
+        "capturedAt": "2026-09-17T10:33:51.649Z"
       },
       {
         "profile": "mobile",
         "file": "mobile.jpg",
         "path": "project-media/mobile.jpg",
-        "bytes": 65110,
+        "bytes": 65723,
         "width": 430,
         "height": 932,
-        "capturedAt": "2026-09-17T10:21:55.996Z"
+        "capturedAt": "2026-09-17T10:33:50.085Z"
       },
       {
         "profile": "og",
         "file": "og.jpg",
         "path": "project-media/og.jpg",
-        "bytes": 120185,
+        "bytes": 122334,
         "width": 1200,
         "height": 630,
-        "capturedAt": "2026-09-17T10:21:59.026Z"
+        "capturedAt": "2026-09-17T10:33:53.176Z"
       }
     ]
   },
@@ -169,11 +169,11 @@
   "analysisNotes": "Historical Phaser runner with Express hosting and leaderboard flow; demoable but older stack and less polished than current games.",
   "git": {
     "branch": "master",
-    "head": "d9ea7bb",
-    "lastCommitDate": "2026-09-15T12:28:14+00:00",
-    "lastCommitSubject": "Refresh screenshots, card, icons and metadata [meta-bot]",
-    "commitCount": 42,
-    "remote": "https://github.com/BorisThoris/runner-score-arcade.git"
+    "head": "1436756",
+    "lastCommitDate": "2026-09-17T13:27:57+03:00",
+    "lastCommitSubject": "Let PUBLIC_PATH override webpack's publicPath for sub-path hosting",
+    "commitCount": 44,
+    "remote": "https://github.com/BorisThoris/runner-score-arcade"
   },
   "readme": {
     "file": "README.md",
