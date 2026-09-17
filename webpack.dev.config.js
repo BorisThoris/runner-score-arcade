@@ -8,7 +8,8 @@ module.exports = {
   },
   output: {
     path: path.join(__dirname, "dist"),
-    publicPath: "/",
+    // PUBLIC_PATH lets the hosted-failover build serve this under a sub-path (e.g. "./").
+    publicPath: process.env.PUBLIC_PATH || "/",
     filename: "[name].js",
     hashFunction: "sha256"
   },
