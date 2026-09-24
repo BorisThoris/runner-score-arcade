@@ -1,6 +1,6 @@
 {
   "slug": "runner-score-arcade",
-  "capturedAt": "2026-09-24T12:56:26.215Z",
+  "capturedAt": "2026-09-24T14:41:56.179Z",
   "source": "deployment",
   "url": "https://runner-score-arcade-git.pages.dev/",
   "recipe": {
@@ -12,7 +12,7 @@
       "file": "card.jpg",
       "width": 1600,
       "height": 900,
-      "bytes": 163001,
+      "bytes": 163135,
       "status": "captured"
     },
     {
@@ -20,7 +20,7 @@
       "file": "desktop.jpg",
       "width": 1440,
       "height": 900,
-      "bytes": 152288,
+      "bytes": 150757,
       "status": "captured"
     },
     {
@@ -28,7 +28,7 @@
       "file": "mobile.jpg",
       "width": 430,
       "height": 932,
-      "bytes": 65483,
+      "bytes": 66449,
       "status": "captured"
     },
     {
@@ -36,7 +36,7 @@
       "file": "full.jpg",
       "width": 1440,
       "height": 900,
-      "bytes": 138077,
+      "bytes": 135784,
       "status": "captured"
     },
     {
@@ -44,7 +44,7 @@
       "file": "og.jpg",
       "width": 1200,
       "height": 630,
-      "bytes": 121361,
+      "bytes": 121106,
       "status": "captured"
     }
   ]
