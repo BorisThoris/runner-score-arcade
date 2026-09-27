@@ -1,38 +1,26 @@
 {
   "slug": "runner-score-arcade",
-  "capturedAt": "2026-09-27T14:15:41.569Z",
-  "source": "deployment",
-  "url": "https://runner-score-arcade-git.pages.dev/",
+  "capturedAt": "2026-09-27T17:51:57.849Z",
+  "source": "local",
+  "url": "http://127.0.0.1:4511/",
   "recipe": {
     "route": "/",
-    "readySelector": "canvas",
-    "readyState": "visible",
+    "readySelector": "#primary:not(:disabled)",
     "actions": [
-      {
-        "type": "wait",
-        "ms": 2500,
-        "label": "boot"
-      },
       {
         "type": "click",
         "target": {
-          "selector": "canvas"
-        },
-        "label": "focus the game",
-        "optional": true
+          "role": "button",
+          "name": "Enter the arena"
+        }
       },
       {
         "type": "key",
         "key": "ArrowRight",
-        "holdMs": 1800,
-        "label": "walk into the level"
+        "holdMs": 500
       }
     ],
-    "waitAfterReadyMs": 600,
-    "quality": {
-      "minStd": 6,
-      "minColours": 2
-    }
+    "waitAfterReadyMs": 2200
   },
   "profiles": [
     {
@@ -40,14 +28,14 @@
       "file": "card.jpg",
       "width": 1600,
       "height": 900,
-      "bytes": 167557,
+      "bytes": 132382,
       "status": "captured",
       "stats": {
-        "mean": 99,
-        "std": 24,
-        "dark": 0.008,
+        "mean": 70,
+        "std": 30,
+        "dark": 0,
         "light": 0,
-        "colours": 31
+        "colours": 8
       }
     },
     {
@@ -55,14 +43,14 @@
       "file": "desktop.jpg",
       "width": 1440,
       "height": 900,
-      "bytes": 155306,
+      "bytes": 131654,
       "status": "captured",
       "stats": {
-        "mean": 99,
-        "std": 26,
-        "dark": 0.016,
+        "mean": 73,
+        "std": 29,
+        "dark": 0,
         "light": 0,
-        "colours": 31
+        "colours": 10
       }
     },
     {
@@ -70,14 +58,14 @@
       "file": "mobile.jpg",
       "width": 430,
       "height": 932,
-      "bytes": 68627,
+      "bytes": 49489,
       "status": "captured",
       "stats": {
-        "mean": 100,
-        "std": 33,
-        "dark": 0.019,
+        "mean": 63,
+        "std": 34,
+        "dark": 0,
         "light": 0,
-        "colours": 53
+        "colours": 47
       }
     },
     {
@@ -85,14 +73,14 @@
       "file": "full.jpg",
       "width": 1440,
       "height": 900,
-      "bytes": 139759,
+      "bytes": 115820,
       "status": "captured",
       "stats": {
-        "mean": 99,
-        "std": 25,
-        "dark": 0.01,
+        "mean": 74,
+        "std": 29,
+        "dark": 0,
         "light": 0,
-        "colours": 32
+        "colours": 9
       }
     },
     {
@@ -100,14 +88,14 @@
       "file": "og.jpg",
       "width": 1200,
       "height": 630,
-      "bytes": 125111,
+      "bytes": 96338,
       "status": "captured",
       "stats": {
-        "mean": 100,
-        "std": 22,
-        "dark": 0.002,
+        "mean": 66,
+        "std": 29,
+        "dark": 0,
         "light": 0,
-        "colours": 26
+        "colours": 11
       }
     }
   ]

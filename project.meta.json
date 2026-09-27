@@ -1,7 +1,7 @@
 {
   "$schema": "./scripts/project.meta.schema.json",
   "schemaVersion": 1,
-  "generatedAt": "2026-09-27T14:15:41.691Z",
+  "generatedAt": "2026-09-27T17:54:31.783Z",
   "generatedBy": "scripts/generate-project-meta.mjs",
   "identity": {
     "slug": "runner-score-arcade",
@@ -9,8 +9,8 @@
     "packageName": "runner-score-arcade",
     "version": "1.0.0",
     "title": "Runner Score Arcade",
-    "subtitle": "Dodg'Em Up Bro: an early Phaser runner",
-    "description": "An early Phaser 3 runner: dodge the falling hazards, grab power-ups, keep your lives and push the score, on keyboard or touch. Served by a small Express app with a demo-safe local leaderboard in place of the original Kinvey backend.",
+    "subtitle": "Dodge, collect, survive — the original stickman arcade",
+    "description": "Dodge falling spikes with the original animated stickman and brick arena. Read drop warnings, collect six-second power-ups, survive escalating waves, and save genuine personal records on this device. Keyboard and touch controls, pause and replay.",
     "tags": [
       "Game",
       "Phaser",
@@ -24,15 +24,15 @@
   },
   "links": {
     "deploymentUrl": "https://runner-score-arcade-git.pages.dev/",
-    "localUrl": "http://127.0.0.1:4107/",
+    "localUrl": "http://127.0.0.1:4511/",
     "repository": "https://github.com/BorisThoris/runner-score-arcade"
   },
   "runtime": {
     "packageManager": "npm",
     "buildCommand": "npm run build",
     "buildOutput": "dist",
-    "runCommand": "npm start",
-    "devPort": 4107,
+    "runCommand": "node scripts/serve-demo.cjs dist 4511",
+    "devPort": 4511,
     "fallbackCommand": "npm start",
     "fallbackEnv": {
       "PORT": "4107"
@@ -60,84 +60,72 @@
   },
   "capture": {
     "route": "/",
-    "readySelector": "canvas",
-    "readyState": "visible",
+    "readySelector": "#primary:not(:disabled)",
     "actions": [
-      {
-        "type": "wait",
-        "ms": 2500,
-        "label": "boot"
-      },
       {
         "type": "click",
         "target": {
-          "selector": "canvas"
-        },
-        "label": "focus the game",
-        "optional": true
+          "role": "button",
+          "name": "Enter the arena"
+        }
       },
       {
         "type": "key",
         "key": "ArrowRight",
-        "holdMs": 1800,
-        "label": "walk into the level"
+        "holdMs": 500
       }
     ],
-    "waitAfterReadyMs": 600,
-    "quality": {
-      "minStd": 6,
-      "minColours": 2
-    }
+    "waitAfterReadyMs": 2200
   },
   "media": {
     "source": "repo-local",
-    "directory": "/home/runner/work/runner-score-arcade/runner-score-arcade/project-media",
+    "directory": "C:/Users/Gaming PC/Documents/Codex/2026-09-27/new-chat/work/game-releases/runner-score-arcade/project-media",
     "primary": "project-media/card.jpg",
     "images": [
       {
         "profile": "card",
         "file": "card.jpg",
         "path": "project-media/card.jpg",
-        "bytes": 167557,
+        "bytes": 132382,
         "width": 1600,
         "height": 900,
-        "capturedAt": "2026-09-27T14:15:19.786Z"
+        "capturedAt": "2026-09-27T17:51:18.364Z"
       },
       {
         "profile": "desktop",
         "file": "desktop.jpg",
         "path": "project-media/desktop.jpg",
-        "bytes": 155306,
+        "bytes": 131654,
         "width": 1440,
         "height": 900,
-        "capturedAt": "2026-09-27T14:15:25.250Z"
+        "capturedAt": "2026-09-27T17:51:27.664Z"
       },
       {
         "profile": "full",
         "file": "full.jpg",
         "path": "project-media/full.jpg",
-        "bytes": 139759,
+        "bytes": 115820,
         "width": 1440,
-        "height": 916,
-        "capturedAt": "2026-09-27T14:15:36.065Z"
+        "height": 900,
+        "capturedAt": "2026-09-27T17:51:50.648Z"
       },
       {
         "profile": "mobile",
         "file": "mobile.jpg",
         "path": "project-media/mobile.jpg",
-        "bytes": 68627,
+        "bytes": 49489,
         "width": 430,
         "height": 932,
-        "capturedAt": "2026-09-27T14:15:30.637Z"
+        "capturedAt": "2026-09-27T17:51:39.072Z"
       },
       {
         "profile": "og",
         "file": "og.jpg",
         "path": "project-media/og.jpg",
-        "bytes": 125111,
+        "bytes": 96338,
         "width": 1200,
         "height": 630,
-        "capturedAt": "2026-09-27T14:15:41.505Z"
+        "capturedAt": "2026-09-27T17:51:57.095Z"
       }
     ],
     "trailers": [
@@ -147,12 +135,12 @@
         "url": "https://runner-score-arcade-git.pages.dev/trailers/tour.mp4",
         "poster": "https://runner-score-arcade-git.pages.dev/trailers/tour.jpg",
         "file": "public/trailers/tour.mp4",
-        "bytes": 1361548,
+        "bytes": 1033622,
         "width": 1280,
         "height": 720,
         "duration": 24,
         "orientation": "landscape",
-        "builtAt": "2026-09-27T14:09:31.502Z"
+        "builtAt": "2026-09-27T17:50:32.217Z"
       }
     ]
   },
@@ -183,21 +171,25 @@
     "devDependencyCount": 13
   },
   "metrics": {
-    "sourceFiles": 35,
-    "testFiles": 2,
-    "sourceLines": 6587,
+    "sourceFiles": 39,
+    "testFiles": 3,
+    "sourceLines": 6182,
     "largestDirectories": [
       {
         "directory": "app",
-        "files": 19
+        "files": 21
       },
       {
         "directory": "scripts",
-        "files": 10
+        "files": 11
       },
       {
         "directory": ".",
         "files": 6
+      },
+      {
+        "directory": "test",
+        "files": 1
       }
     ],
     "hasReadme": true,
@@ -215,12 +207,12 @@
   },
   "analysisNotes": "Historical Phaser runner with Express hosting and leaderboard flow; demoable but older stack and less polished than current games.",
   "git": {
-    "branch": "master",
-    "head": "989e4ef",
-    "lastCommitDate": "2026-09-27T17:10:52+03:00",
-    "lastCommitSubject": "A media strategy with tests: screenshots that show the app, a recorded trailer, a gated refresh",
-    "commitCount": 53,
-    "remote": "https://github.com/BorisThoris/runner-score-arcade"
+    "branch": "codex/product-polish-release",
+    "head": "c28d27b",
+    "lastCommitDate": "2026-09-27T20:52:57+03:00",
+    "lastCommitSubject": "Include nested public media in static builds",
+    "commitCount": 56,
+    "remote": "https://github.com/BorisThoris/runner-score-arcade.git"
   },
   "readme": {
     "file": "README.md",
