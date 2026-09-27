@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha test",
-    "build": "node --openssl-legacy-provider ./node_modules/webpack/bin/webpack.js --mode development --config webpack.server.config.js && node --openssl-legacy-provider ./node_modules/webpack/bin/webpack.js --mode production --config webpack.dev.config.js",
+    "build": "node --openssl-legacy-provider ./node_modules/webpack/bin/webpack.js --mode development --config webpack.server.config.js && node --openssl-legacy-provider ./node_modules/webpack/bin/webpack.js --mode production --config webpack.dev.config.js && node scripts/build-media-delivery.mjs dist",
     "start": "node ./dist/server.js",
     "your-custom-script": "echo npm",
     "deploy": "gh-pages -d dist",
@@ -20,7 +20,7 @@
     "meta:refresh": "node scripts/refresh-project-meta.mjs",
     "trailers": "node scripts/build-project-trailers.mjs",
     "trailers:check": "node scripts/build-project-trailers.mjs --check",
-    "test:media": "node --test scripts/project-media.test.mjs",
+    "test:media": "node --test scripts/project-media.test.mjs scripts/media-delivery.test.mjs",
     "test:media:e2e": "node scripts/project-media.e2e.mjs"
   },
   "author": "",
