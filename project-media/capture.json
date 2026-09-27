@@ -1,10 +1,38 @@
 {
   "slug": "runner-score-arcade",
-  "capturedAt": "2026-09-24T16:27:28.609Z",
+  "capturedAt": "2026-09-27T14:10:45.578Z",
   "source": "deployment",
   "url": "https://runner-score-arcade-git.pages.dev/",
   "recipe": {
-    "route": "/"
+    "route": "/",
+    "readySelector": "canvas",
+    "readyState": "visible",
+    "actions": [
+      {
+        "type": "wait",
+        "ms": 2500,
+        "label": "boot"
+      },
+      {
+        "type": "click",
+        "target": {
+          "selector": "canvas"
+        },
+        "label": "focus the game",
+        "optional": true
+      },
+      {
+        "type": "key",
+        "key": "ArrowRight",
+        "holdMs": 1800,
+        "label": "walk into the level"
+      }
+    ],
+    "waitAfterReadyMs": 600,
+    "quality": {
+      "minStd": 6,
+      "minColours": 2
+    }
   },
   "profiles": [
     {
@@ -12,40 +40,75 @@
       "file": "card.jpg",
       "width": 1600,
       "height": 900,
-      "bytes": 165002,
-      "status": "captured"
+      "bytes": 166682,
+      "status": "captured",
+      "stats": {
+        "mean": 100,
+        "std": 22,
+        "dark": 0.002,
+        "light": 0,
+        "colours": 27
+      }
     },
     {
       "profile": "desktop",
       "file": "desktop.jpg",
       "width": 1440,
       "height": 900,
-      "bytes": 151664,
-      "status": "captured"
+      "bytes": 154251,
+      "status": "captured",
+      "stats": {
+        "mean": 100,
+        "std": 24,
+        "dark": 0.006,
+        "light": 0,
+        "colours": 26
+      }
     },
     {
       "profile": "mobile",
       "file": "mobile.jpg",
       "width": 430,
       "height": 932,
-      "bytes": 65335,
-      "status": "captured"
+      "bytes": 65882,
+      "status": "captured",
+      "stats": {
+        "mean": 101,
+        "std": 33,
+        "dark": 0.014,
+        "light": 0,
+        "colours": 51
+      }
     },
     {
       "profile": "full",
       "file": "full.jpg",
       "width": 1440,
       "height": 900,
-      "bytes": 136131,
-      "status": "captured"
+      "bytes": 139349,
+      "status": "captured",
+      "stats": {
+        "mean": 100,
+        "std": 24,
+        "dark": 0.004,
+        "light": 0,
+        "colours": 33
+      }
     },
     {
       "profile": "og",
       "file": "og.jpg",
       "width": 1200,
       "height": 630,
-      "bytes": 122532,
-      "status": "captured"
+      "bytes": 125098,
+      "status": "captured",
+      "stats": {
+        "mean": 100,
+        "std": 22,
+        "dark": 0.001,
+        "light": 0,
+        "colours": 26
+      }
     }
   ]
 }

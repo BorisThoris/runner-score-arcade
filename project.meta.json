@@ -1,7 +1,7 @@
 {
   "$schema": "./scripts/project.meta.schema.json",
   "schemaVersion": 1,
-  "generatedAt": "2026-09-24T16:27:28.732Z",
+  "generatedAt": "2026-09-27T14:10:46.569Z",
   "generatedBy": "scripts/generate-project-meta.mjs",
   "identity": {
     "slug": "runner-score-arcade",
@@ -53,61 +53,106 @@
       "icons:check",
       "meta:refresh",
       "trailers",
-      "trailers:check"
+      "trailers:check",
+      "test:media",
+      "test:media:e2e"
     ]
   },
   "capture": {
-    "route": "/"
+    "route": "/",
+    "readySelector": "canvas",
+    "readyState": "visible",
+    "actions": [
+      {
+        "type": "wait",
+        "ms": 2500,
+        "label": "boot"
+      },
+      {
+        "type": "click",
+        "target": {
+          "selector": "canvas"
+        },
+        "label": "focus the game",
+        "optional": true
+      },
+      {
+        "type": "key",
+        "key": "ArrowRight",
+        "holdMs": 1800,
+        "label": "walk into the level"
+      }
+    ],
+    "waitAfterReadyMs": 600,
+    "quality": {
+      "minStd": 6,
+      "minColours": 2
+    }
   },
   "media": {
     "source": "repo-local",
-    "directory": "/home/runner/work/runner-score-arcade/runner-score-arcade/project-media",
+    "directory": "C:/Users/GAMING~1/AppData/Local/Temp/media-rollout-6a3Ehy/project-media",
     "primary": "project-media/card.jpg",
     "images": [
       {
         "profile": "card",
         "file": "card.jpg",
         "path": "project-media/card.jpg",
-        "bytes": 165002,
+        "bytes": 166682,
         "width": 1600,
         "height": 900,
-        "capturedAt": "2026-09-24T16:27:22.287Z"
+        "capturedAt": "2026-09-27T14:10:18.388Z"
       },
       {
         "profile": "desktop",
         "file": "desktop.jpg",
         "path": "project-media/desktop.jpg",
-        "bytes": 151664,
+        "bytes": 154251,
         "width": 1440,
         "height": 900,
-        "capturedAt": "2026-09-24T16:27:23.851Z"
+        "capturedAt": "2026-09-27T14:10:25.359Z"
       },
       {
         "profile": "full",
         "file": "full.jpg",
         "path": "project-media/full.jpg",
-        "bytes": 136131,
+        "bytes": 139349,
         "width": 1440,
         "height": 916,
-        "capturedAt": "2026-09-24T16:27:27.001Z"
+        "capturedAt": "2026-09-27T14:10:38.365Z"
       },
       {
         "profile": "mobile",
         "file": "mobile.jpg",
         "path": "project-media/mobile.jpg",
-        "bytes": 65335,
+        "bytes": 65882,
         "width": 430,
         "height": 932,
-        "capturedAt": "2026-09-24T16:27:25.402Z"
+        "capturedAt": "2026-09-27T14:10:31.699Z"
       },
       {
         "profile": "og",
         "file": "og.jpg",
         "path": "project-media/og.jpg",
-        "bytes": 122532,
+        "bytes": 125098,
         "width": 1200,
         "height": 630,
-        "capturedAt": "2026-09-24T16:27:28.576Z"
+        "capturedAt": "2026-09-27T14:10:44.995Z"
+      }
+    ],
+    "trailers": [
+      {
+        "id": "tour",
+        "title": "Dodg'Em Up Bro: a run",
+        "url": "https://runner-score-arcade-git.pages.dev/trailers/tour.mp4",
+        "poster": "https://runner-score-arcade-git.pages.dev/trailers/tour.jpg",
+        "file": "public/trailers/tour.mp4",
+        "bytes": 1361548,
+        "width": 1280,
+        "height": 720,
+        "duration": 24,
+        "orientation": "landscape",
+        "builtAt": "2026-09-27T14:09:31.502Z"
       }
     ]
   },
@@ -138,9 +183,9 @@
     "devDependencyCount": 13
   },
   "metrics": {
-    "sourceFiles": 32,
-    "testFiles": 0,
-    "sourceLines": 5710,
+    "sourceFiles": 35,
+    "testFiles": 2,
+    "sourceLines": 6587,
     "largestDirectories": [
       {
         "directory": "app",
@@ -148,7 +193,7 @@
       },
       {
         "directory": "scripts",
-        "files": 7
+        "files": 10
       },
       {
         "directory": ".",
@@ -156,7 +201,7 @@
       }
     ],
     "hasReadme": true,
-    "hasTests": false,
+    "hasTests": true,
     "hasCi": true,
     "hasDocs": false
   },
@@ -170,12 +215,12 @@
   },
   "analysisNotes": "Historical Phaser runner with Express hosting and leaderboard flow; demoable but older stack and less polished than current games.",
   "git": {
-    "branch": "master",
-    "head": "fc0b03b",
-    "lastCommitDate": "2026-09-24T19:16:14+03:00",
-    "lastCommitSubject": "Update the metadata toolkit scripts: trailers step, refresh --commit, capture.skip",
-    "commitCount": 51,
-    "remote": "https://github.com/BorisThoris/runner-score-arcade"
+    "branch": "HEAD",
+    "head": "1213053",
+    "lastCommitDate": "2026-09-24T16:27:28+00:00",
+    "lastCommitSubject": "Refresh screenshots, card, icons and metadata [meta-bot]",
+    "commitCount": 52,
+    "remote": "https://github.com/BorisThoris/runner-score-arcade.git"
   },
   "readme": {
     "file": "README.md",

@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "items": [
+    {
+      "id": "tour",
+      "title": "Dodg'Em Up Bro: a run",
+      "kind": "capture",
+      "inputsHash": "de9312306da76f90e35a2cb5504ca88937f18caa9aee611688ff819d49a26871",
+      "builtAt": "2026-09-27T14:09:31.502Z",
+      "source": "project-media/.captures/tour.webm",
+      "file": "public/trailers/tour.mp4",
+      "poster": "public/trailers/tour.jpg",
+      "urlPath": "/trailers/tour.mp4",
+      "posterUrlPath": "/trailers/tour.jpg",
+      "bytes": 1361548,
+      "width": 1280,
+      "height": 720,
+      "duration": 24,
+      "fps": 30,
+      "orientation": "landscape",
+      "music": "project-media/music/tour.m4a",
+      "stats": {
+        "mean": 100,
+        "std": 23,
+        "dark": 0.003,
+        "light": 0,
+        "colours": 28
+      }
+    }
+  ]
+}
