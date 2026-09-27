@@ -1,7 +1,7 @@
 {
   "$schema": "./scripts/project.meta.schema.json",
   "schemaVersion": 1,
-  "generatedAt": "2026-09-27T18:13:02.990Z",
+  "generatedAt": "2026-09-27T20:39:15.959Z",
   "generatedBy": "scripts/generate-project-meta.mjs",
   "identity": {
     "slug": "runner-score-arcade",
@@ -86,46 +86,46 @@
         "profile": "card",
         "file": "card.jpg",
         "path": "project-media/card.jpg",
-        "bytes": 130420,
+        "bytes": 130436,
         "width": 1600,
         "height": 900,
-        "capturedAt": "2026-09-27T18:12:46.121Z"
+        "capturedAt": "2026-09-27T20:38:59.638Z"
       },
       {
         "profile": "desktop",
         "file": "desktop.jpg",
         "path": "project-media/desktop.jpg",
-        "bytes": 129112,
+        "bytes": 129131,
         "width": 1440,
         "height": 900,
-        "capturedAt": "2026-09-27T18:12:50.320Z"
+        "capturedAt": "2026-09-27T20:39:03.703Z"
       },
       {
         "profile": "full",
         "file": "full.jpg",
         "path": "project-media/full.jpg",
-        "bytes": 114092,
+        "bytes": 114187,
         "width": 1440,
         "height": 900,
-        "capturedAt": "2026-09-27T18:12:58.752Z"
+        "capturedAt": "2026-09-27T20:39:11.734Z"
       },
       {
         "profile": "mobile",
         "file": "mobile.jpg",
         "path": "project-media/mobile.jpg",
-        "bytes": 47582,
+        "bytes": 47613,
         "width": 430,
         "height": 932,
-        "capturedAt": "2026-09-27T18:12:54.403Z"
+        "capturedAt": "2026-09-27T20:39:07.686Z"
       },
       {
         "profile": "og",
         "file": "og.jpg",
         "path": "project-media/og.jpg",
-        "bytes": 94163,
+        "bytes": 94105,
         "width": 1200,
         "height": 630,
-        "capturedAt": "2026-09-27T18:13:02.826Z"
+        "capturedAt": "2026-09-27T20:39:15.796Z"
       }
     ],
     "trailers": [
@@ -171,9 +171,9 @@
     "devDependencyCount": 13
   },
   "metrics": {
-    "sourceFiles": 39,
-    "testFiles": 3,
-    "sourceLines": 6182,
+    "sourceFiles": 42,
+    "testFiles": 4,
+    "sourceLines": 6440,
     "largestDirectories": [
       {
         "directory": "app",
@@ -181,11 +181,15 @@
       },
       {
         "directory": "scripts",
-        "files": 11
+        "files": 13
       },
       {
         "directory": ".",
         "files": 6
+      },
+      {
+        "directory": "public",
+        "files": 1
       },
       {
         "directory": "test",
@@ -208,10 +212,10 @@
   "analysisNotes": "Historical Phaser runner with Express hosting and leaderboard flow; demoable but older stack and less polished than current games.",
   "git": {
     "branch": "master",
-    "head": "89ada0d",
-    "lastCommitDate": "2026-09-27T20:55:24+03:00",
-    "lastCommitSubject": "Capture original-style arcade gameplay and publish static media",
-    "commitCount": 57,
+    "head": "901fb13",
+    "lastCommitDate": "2026-09-27T23:29:46+03:00",
+    "lastCommitSubject": "Serve published trailers with real HTTP byte ranges",
+    "commitCount": 59,
     "remote": "https://github.com/BorisThoris/runner-score-arcade"
   },
   "readme": {
