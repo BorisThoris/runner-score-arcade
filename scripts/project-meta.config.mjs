@@ -17,8 +17,8 @@ export default {
   "classification": "web-app",
   "curated": {
     "title": "Runner Score Arcade",
-    "subtitle": "Dodg'Em Up Bro: an early Phaser runner",
-    "description": "An early Phaser 3 runner: dodge the falling hazards, grab power-ups, keep your lives and push the score, on keyboard or touch. Served by a small Express app with a demo-safe local leaderboard in place of the original Kinvey backend.",
+    "subtitle": "Dodge, collect, survive — the original stickman arcade",
+    "description": "Dodge falling spikes with the original animated stickman and brick arena. Read drop warnings, collect six-second power-ups, survive escalating waves, and save genuine personal records on this device. Keyboard and touch controls, pause and replay.",
     "tags": [
       "Game",
       "Phaser",
@@ -27,49 +27,37 @@ export default {
     ],
     "accent": "#f97316",
     "deploymentUrl": "https://runner-score-arcade-git.pages.dev/",
-    "localUrl": "http://127.0.0.1:4107/",
+    "localUrl": "http://127.0.0.1:4511/",
     "buildCommand": "npm run build",
     "buildOutput": "dist",
     "fallbackCommand": "npm start",
     "fallbackEnv": {
       "PORT": "4107"
     },
-    "runCommand": "npm start",
-    "devPort": 4107,
+    "runCommand": "node scripts/serve-demo.cjs dist 4511",
+    "devPort": 4511,
     "showcaseTier": "showcase",
     "showcaseOrder": 7
   },
   "capture": {
     "route": "/",
-    "readySelector": "canvas",
-    "readyState": "visible",
+    "readySelector": "#primary:not(:disabled)",
     "actions": [
-      {
-        "type": "wait",
-        "ms": 2500,
-        "label": "boot"
-      },
-      {
-        "type": "click",
-        "target": {
-          "selector": "canvas"
+        {
+            "type": "click",
+            "target": {
+                "role": "button",
+                "name": "Enter the arena"
+            }
         },
-        "label": "focus the game",
-        "optional": true
-      },
-      {
-        "type": "key",
-        "key": "ArrowRight",
-        "holdMs": 1800,
-        "label": "walk into the level"
-      }
+        {
+            "type": "key",
+            "key": "ArrowRight",
+            "holdMs": 500
+        }
     ],
-    "waitAfterReadyMs": 600,
-    "quality": {
-      "minStd": 6,
-      "minColours": 2
-    }
-  },
+    "waitAfterReadyMs": 2200
+},
   "scores": {
     "priorityScore": 86,
     "demoabilityScore": 76,
@@ -107,97 +95,66 @@ export default {
           "index.html",
           "style.css"
         ],
-        "source": "deployment",
+        "source": "local",
         "music": "project-media/music/tour.m4a",
         "posterAt": 0.5,
         "recipe": {
-          "route": "/",
-          "viewport": {
-            "width": 1280,
-            "height": 720
-          },
-          "durationMs": 24000,
-          "quality": {
-            "minStd": 6,
-            "minColours": 2
-          },
-          "setup": {
-            "readySelector": "canvas",
-            "readyState": "visible",
-            "waitAfterReadyMs": 2500,
-            "actions": [
-              {
-                "type": "click",
-                "target": {
-                  "selector": "canvas"
+        "route": "/",
+        "viewport": {
+                "width": 1280,
+                "height": 720
+        },
+        "durationMs": 24000,
+        "quality": {
+                "minStd": 6,
+                "minColours": 2
+        },
+        "setup": {
+                "readySelector": "#primary:not(:disabled)",
+                "actions": [
+                        {
+                                "type": "click",
+                                "target": {
+                                        "role": "button",
+                                        "name": "Enter the arena"
+                                }
+                        },
+                        {
+                                "type": "key",
+                                "key": "ArrowRight",
+                                "holdMs": 500
+                        }
+                ],
+                "waitAfterReadyMs": 2200
+        },
+        "timeline": [
+                {
+                        "type": "key",
+                        "key": "ArrowRight",
+                        "holdMs": 1200
                 },
-                "label": "focus the game",
-                "optional": true
-              }
-            ]
-          },
-          "timeline": [
-            {
-              "type": "wait",
-              "ms": 1500
-            },
-            {
-              "type": "key",
-              "key": "ArrowRight",
-              "holdMs": 1500,
-              "label": "run right"
-            },
-            {
-              "type": "key",
-              "key": "ArrowLeft",
-              "holdMs": 1500,
-              "label": "run left"
-            },
-            {
-              "type": "press",
-              "key": "ArrowUp",
-              "label": "jump"
-            },
-            {
-              "type": "wait",
-              "ms": 800
-            },
-            {
-              "type": "key",
-              "key": "ArrowLeft",
-              "holdMs": 900,
-              "label": "dodge"
-            },
-            {
-              "type": "key",
-              "key": "ArrowRight",
-              "holdMs": 900,
-              "label": "dodge"
-            },
-            {
-              "type": "press",
-              "key": "ArrowUp",
-              "label": "jump"
-            },
-            {
-              "type": "key",
-              "key": "ArrowLeft",
-              "holdMs": 1200,
-              "label": "dodge"
-            },
-            {
-              "type": "press",
-              "key": "ArrowUp",
-              "label": "jump"
-            },
-            {
-              "type": "key",
-              "key": "ArrowRight",
-              "holdMs": 1500,
-              "label": "dodge"
-            }
-          ]
-        }
+                {
+                        "type": "key",
+                        "key": "ArrowUp",
+                        "holdMs": 250
+                },
+                {
+                        "type": "key",
+                        "key": "ArrowLeft",
+                        "holdMs": 1800
+                },
+                {
+                        "type": "key",
+                        "key": "ArrowUp",
+                        "holdMs": 250
+                },
+                {
+                        "type": "key",
+                        "key": "ArrowRight",
+                        "holdMs": 1000
+                }
+        ]
+}
       }
     ]
   }

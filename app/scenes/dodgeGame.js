@@ -1,601 +1,151 @@
 import musicBack from "../assets/backMusic(2).mp3";
 import gameOver from "../assets/gameOver.mp3";
-import ooGnome from "../assets/oo.mp3";
-
-/* Helper, Services */
 import PlayerMover from "../help-scripts/playerMovement";
-import CollisionsHelper from "../help-scripts/collisionsHelper";
 import spriteSheethelper from "../help-scripts/loadSpriteSheets";
 import imageHelper from "../help-scripts/loadImages";
 import animationsHelper from "../help-scripts/animationsHelper";
-import powerUpTextHelper from "../help-scripts/powerUpText";
-
-const style2 = {
-  font: "bold 40px Arial",
-  fill: "#fff",
-  boundsAlignH: "center",
-  boundsAlignV: "middle"
-};
-
-const text0 = { x: 970, y: 16 };
-const text1 = { x: 1010, y: 66 };
-const text2 = { x: 1010, y: 116 };
-const text3 = { x: 1010, y: 166 };
-const text4 = { x: 1010, y: 216 };
-const text5 = { x: 1010, y: 266 };
-const text6 = { x: 1010, y: 316 };
-const text7 = { x: 1010, y: 366 };
-const text8 = { x: 1010, y: 416 };
-const demoPlayerName = "Demo";
-const demoScores = [
-  { _id: "demo-1", name: "Alex", score: 980 },
-  { _id: "demo-2", name: "Mira", score: 860 },
-  { _id: "demo-3", name: "Noah", score: 740 },
-  { _id: "demo-4", name: "Ivy", score: 680 },
-  { _id: "demo-5", name: "Kai", score: 590 },
-  { _id: "demo-6", name: "Lena", score: 520 },
-  { _id: "demo-7", name: "Sam", score: 430 },
-  { _id: "demo-8", name: "Bo", score: 360 }
-];
+import arcadeShell from "../game/arcadeShell";
+import { readRecords, saveRun } from "../game/records";
 
 export default class DodgeGame extends Phaser.Scene {
-  constructor() {
-    super({ key: "gameScene" });
-    //Variables
-    this.player = null;
-    this.platforms = null;
-    this.cursors = null;
-    this.scoreText = null;
-    this.spikes = null;
-    this.powerUps = null;
-    this.scoreText = null;
-    this.gameOverText = null;
-    this.replayButton = null;
-    this.music = null;
-    this.gameOverMusic = null;
-    this.ooGnome = null;
-    this.textEntry = null;
-    this.scores = null;
-    this.target;
-    this.minScore;
-    this.yourName;
-
-    //Variables with default values
-    this.score = 0;
-    this.timer = 0;
-    this.gameOver = false;
-    this.jumped = false;
-    this.crouched = false;
-    this.spikeMax = 0.4;
-    this.listener = 0;
-    this.lives = 3;
-
-    //this.player vars
-    this.playerHeight = 225;
-
-    //Change walking speed
-    this.walkSpeed = 500;
-    this.croutchSpeed = this.walkSpeed - 100;
-
-    //Helpers
-    this.playerMovementHelper = null;
-    this.collisionHelper = null;
-    this.spriteSheethelper = new spriteSheethelper();
-    this.imageHelper = new imageHelper();
-    this.animationsHelper = new animationsHelper();
-  }
-
+  constructor() { super({ key: 'gameScene' }); this.state = 'ready'; }
   preload() {
-    this.spriteSheethelper.loadSpriteSheets(this.load);
-    this.imageHelper.loadImages(this.load);
-
-    //Audio
-    this.load.audio("musicBack", musicBack);
-    this.load.audio("gameOver", gameOver);
-    this.load.audio("ooGnome", ooGnome);
-    this.yourName = demoPlayerName;
+    new spriteSheethelper().loadSpriteSheets(this.load);
+    new imageHelper().loadImages(this.load);
+    this.load.audio('musicBack', musicBack); this.load.audio('gameOver', gameOver);
   }
-
-  addLive() {
-    console.log("live func invoked");
-    this.lives++;
-  }
-
-  enterName(tooLong) {
-    let name;
-
-    if (tooLong) {
-      name = window.prompt(
-        "Nickname was too long, please enter a new one",
-        "Enter your name here"
-      );
-    } else if (!tooLong) {
-      name = window.prompt("Name can't be empty");
-    } else {
-      name = window.prompt("Enter Your Nickname");
-    }
-
-    if (!name) {
-      this.yourName = demoPlayerName;
-    } else if (name.length > 8) {
-      this.enterName(true);
-    } else if (name.length === 0) {
-      this.enterName(false);
-    } else {
-      this.yourName = name;
-    }
-  }
-
-  spikeCollision(tempSpike) {
-    //On Collision with enemy
-    if (this.player.body.touching.up) {
-      tempSpike.destroy();
-      if (this.lives <= 0) {
-        //Stop BG this.music and play game over this.music
-        this.music.pause();
-        this.gameOverMusic.play();
-
-        let score = Math.floor(this.timer / 50);
-
-        this.gameOverFunc();
-        return;
-      }
-      this.powerUpTextHelper.powerUpText("spikeHit", "0");
-      this.lives--;
-      this.livesText.setText("Lives: " + this.lives);
-    }
-  }
-
-  powerUpCollision(player, tempPowerUp) {
-    let type = tempPowerUp.texture.key.split(" ")[0];
-    let ammount = tempPowerUp.texture.key.split(" ")[1];
-    let tempLives = this.collisionHelper.powerUpsCollision(
-      tempPowerUp,
-      type,
-      ammount,
-      this.lives
-    );
-
-    if (tempLives !== undefined) {
-      this.lives = tempLives;
-    }
-
-    this.livesText.setText("Lives: " + this.lives);
-    this.powerUpTextHelper.powerUpText(type, ammount);
-  }
-
-  initialAuth() {
-    this.scores = demoScores.map(score => ({ ...score }));
-    this.updateScoreText();
-  }
-
-  updateScores() {
-    this.scores.sort((a, b) => Number(b.score) - Number(a.score));
-    this.updateScoreText();
-  }
-
-  updateScoreText() {
-    if (!this.score1 || !this.scores) return;
-    this.score1.setText(`${this.scores[0].name}: ${this.scores[0].score}`);
-    this.score2.setText(`${this.scores[1].name}: ${this.scores[1].score}`);
-    this.score3.setText(`${this.scores[2].name}: ${this.scores[2].score}`);
-    this.score4.setText(`${this.scores[3].name}: ${this.scores[3].score}`);
-    this.score5.setText(`${this.scores[4].name}: ${this.scores[4].score}`);
-    this.score6.setText(`${this.scores[5].name}: ${this.scores[5].score}`);
-    this.score7.setText(`${this.scores[6].name}: ${this.scores[6].score}`);
-    this.score8.setText(`${this.scores[7].name}: ${this.scores[7].score}`);
-  }
-
-  checkMin() {
-    let score = Number(Math.floor(this.timer / 50));
-
-    // let result = this.scores.map(Number(this.scores.score));
-    // console.log(result);
-
-    let tempArr = this.scores.map(score => {
-      return parseInt(score.score, 10);
-    });
-
-    return {
-      id: this.scores[this.scores.length - 1]._id,
-      score: this.scores[this.scores.length - 1].score
-    };
-  }
-
-  settupPhysics() {
-    this.spikes = this.physics.add.group({});
-    this.powerUps = this.physics.add.group({});
-
-    this.spikes.children.iterate(function(child) {
-      child.body.friction.x = 5;
-    });
-
-    this.physics.add.collider(this.spikes, this.powerUps);
-    this.physics.add.collider(this.powerUps, this.powerUps);
-    this.physics.add.collider(this.spikes, this.player, (player, tempSpike) =>
-      this.spikeCollision(tempSpike)
-    );
-    this.physics.add.collider(
-      this.powerUps,
-      this.player,
-      (player, tempPowerUp) => this.powerUpCollision(player, tempPowerUp)
-    );
-
-    this.physics.add.collider(this.player, this.platforms);
-  }
-
-  generateTexts() {
-    this.scoreText = this.add.text(16, 16, "score: 0", {
-      fontSize: "62px",
-      fill: "#f6ff00"
-    });
-
-    this.livesText = this.add.text(16, 76, `Lives: ${this.lives}`, {
-      fontSize: "62px",
-      fill: "#fff"
-    });
-
-    this.score0 = this.add.text(text0.x, text0.y, "Highest Scores", style2);
-    this.score1 = this.add.text(text1.x, text1.y, "Bobo: 1000", style2);
-    this.score2 = this.add.text(text2.x, text2.y, "Bobo: 1000", style2);
-    this.score3 = this.add.text(text3.x, text3.y, "Bobo: 1000", style2);
-    this.score4 = this.add.text(text4.x, text4.y, "Bobo: 1000", style2);
-    this.score5 = this.add.text(text5.x, text5.y, "Bobo: 1000", style2);
-    this.score6 = this.add.text(text6.x, text6.y, "Bobo: 1000", style2);
-    this.score7 = this.add.text(text7.x, text7.y, "Bobo: 1000", style2);
-    this.score8 = this.add.text(text8.x, text8.y, "Bobo: 1000", style2);
-  }
-
   create() {
-    this.music = this.sound.add("musicBack");
-    this.gameOverMusic = this.sound.add("gameOver");
-    this.ooGnome = this.sound.add("ooGnome");
-
-    this.music.play();
-    this.animationsHelper.createAnimations(this.anims);
-
-    //Background
-    this.add.tileSprite(1280 / 2, 720 / 2, 1280, 720, "background");
-
-    //Frame debug view
-    this.frameView = this.add.graphics();
-
-    //The platforms group contains the ground and the 2 ledges we can jump on
-    this.platforms = this.physics.add.staticGroup();
-
-    //Floor
-    this.platforms
-      .create(1280, 768, "ground")
-      .setScale(2)
-      .refreshBody();
-
-    //Input Events
-    this.cursors = this.input.keyboard.createCursorKeys();
-
-    this.input.on(
-      "gameobjectup",
-      function(pointer, gameObject) {
-        gameObject.emit("clicked", gameObject);
-      },
-      this
-    );
-
-    const alpha = 0.3;
-
-    //Touch Arrows
-    /*   Arrow Left   */
-    //390
-    //613
-    this.left = this.add.image(320, 330, "baseTouchKey");
-    this.left.setScale(1.25);
-    this.left.alpha = alpha;
-    this.left.angle -= 90;
-    this.left.setInteractive();
-    this.addTouchControls(this.left, this.cursors.left);
-
-    /*   Arrow Rigth   */
-    //570
-    //613
-    this.right = this.add.image(960, 330, "baseTouchKey");
-    this.right.setScale(1.25);
-    this.right.alpha = alpha;
-    this.right.angle -= 270;
-    this.right.setInteractive();
-
-    this.addTouchControls(this.right, this.cursors.right);
-
-    /*   Arrow Up   */
-    //480
-    //523
-    this.arrowUp = this.add.image(640, 100, "baseTouchKey");
-    this.arrowUp.setScale(0.4);
-    this.arrowUp.alpha = alpha;
-    this.arrowUp.setInteractive();
-    this.addTouchControls(this.arrowUp, this.cursors.up);
-
-    /*   Arrow Down   */
-    this.down = this.add.image(640, 550, "baseTouchKey");
-    this.down.setScale(0.4);
-    this.down.alpha = alpha;
-    this.down.angle -= 180;
-    this.down.setInteractive();
-    this.addTouchControls(this.down, this.cursors.down);
-
-    this.generateTexts();
-    this.initialAuth();
-
-    //Creating this.player
-    this.player = this.physics.add.sprite(
-      600,
-      +540,
-      this.playerHeight,
-      "mummy"
-    );
-
-    this.target = this.add.text(430, 290, "Text", {
-      fontSize: "70px",
-      fill: "#f6ff00"
+    this.timer=0; this.score=0; this.lives=3; this.wave=1; this.gameOver=false; this.paused=false;
+    this.pending=[]; this.spawnElapsed=0; this.pickupElapsed=0; this.invulnerable=0; this.effectRemaining=0; this.state='ready';
+    this.records=readRecords(window.localStorage);
+    this.sound.mute=true;
+    this.music=this.cache.audio.exists('musicBack') ? this.sound.add('musicBack',{loop:true,volume:.25}) : null;
+    this.endSound=this.cache.audio.exists('gameOver') ? this.sound.add('gameOver',{volume:.3}) : null;
+    if (!this.anims.get('walkRight')) new animationsHelper().createAnimations(this.anims);
+    this.add.tileSprite(640,360,1280,720,'background');
+    this.add.tileSprite(640,698,1280,96,'ground');
+    const floor=this.add.rectangle(640,687,1280,74,0x1d292a,0);
+    this.physics.add.existing(floor,true);
+    this.shadow=this.add.ellipse(640,645,115,18,0x32281d,.2);
+    this.player=this.physics.add.sprite(640,540,'flex').setScale(.64).setCollideWorldBounds(true);
+    this.player.setSize(100,225,true);this.player.anims.play('flex',true);
+    this.playerMovementHelper=new PlayerMover(this.player);
+    this.physics.add.collider(this.player,floor);
+    this.spikes=this.physics.add.group();this.powerUps=this.physics.add.group();
+    this.physics.add.overlap(this.player,this.spikes,(_,spike)=>this.spikeCollision(spike));
+    this.physics.add.overlap(this.player,this.powerUps,(_,pickup)=>this.powerUpCollision(pickup));
+    this.cursors=this.input.keyboard.createCursorKeys();
+    this.ui=arcadeShell(this);
+    this.ui.primary.disabled=false;this.ui.primary.textContent='Enter the arena';
+    this.ui.best.textContent=this.records.length?String(this.records[0].score).padStart(4,'0'):'—';
+    this.showRecords();
+    const pause=()=>this.togglePause();
+    const retry=()=>{if(this.state==='over')this.startRun();};
+    const blur=()=>{if(this.state==='running')this.togglePause();this.releaseInput();};
+    this.input.keyboard.on('keydown_P',pause);this.input.keyboard.on('keydown_ESC',pause);this.input.keyboard.on('keydown_R',retry);
+    this.game.events.on('blur',blur);this.game.events.on('hidden',blur);
+    this.events.once('shutdown',()=>{
+      this.game.events.off('blur',blur);this.game.events.off('hidden',blur);
+      this.input.keyboard.off('keydown_P',pause);this.input.keyboard.off('keydown_ESC',pause);this.input.keyboard.off('keydown_R',retry);
+      if(this.music)this.music.destroy();if(this.endSound)this.endSound.destroy();
     });
-
-    this.target.alpha = 0;
-
-    //Setting Up Helpers
-    this.playerMovementHelper = new PlayerMover(this.player);
-    this.powerUpTextHelper = new powerUpTextHelper(
-      this.player,
-      this.target,
-      this.add
-    );
-    this.collisionHelper = new CollisionsHelper(
-      this.player,
-      this.playerMovementHelper,
-      this.lives,
-      this.addLive
-    );
-
-    //This.player physics properties
-    this.player.setBounce(0.0);
-    this.player.setCollideWorldBounds(true);
-
-    //Collisions
-    this.settupPhysics();
-    this.player.setSize(600, this.playerHeight, true);
-
-    this.replayButton = this.add.sprite(1280 / 2 - 200, 70, "replay");
-    this.replayButton.setScale(0.125);
+    this.physics.pause();
   }
-
-  addTouchControls(object, cursor) {
-    object.on(
-      "pointerdown",
-      () => {
-        cursor.isDown = true;
-        cursor.isUp = false;
-      },
-      () => {
-        cursor.isDown = false;
-        cursor.isUp = true;
-      }
-    );
-    object.on("pointerup", () => {
-      cursor.isDown = false;
-      cursor.isUp = true;
-    });
-    object.on("pointerout", (pointer, event) => {
-      cursor.isDown = false;
-      cursor.isUp = true;
-    });
+  releaseInput() {
+    Object.values(this.cursors).forEach(key=>{key.isDown=false;key.isUp=true;});
+    document.querySelectorAll('.held').forEach(button=>button.classList.remove('held'));
   }
-
-  updateFrameView() {}
-
+  startRun() {
+    this.spikes.clear(true,true);this.powerUps.clear(true,true);this.pending.forEach(item=>item.marker.destroy());this.pending=[];
+    this.timer=0;this.score=0;this.lives=3;this.wave=1;this.gameOver=false;this.paused=false;
+    this.spawnElapsed=0;this.pickupElapsed=0;this.invulnerable=0;this.effectRemaining=0;this.effectName='';
+    this.player.setPosition(640,540).setVelocity(0,0).setAlpha(1);this.playerMovementHelper.reset();this.releaseInput();
+    this.state='running';this.ui['run-panel'].hidden=true;this.ui.pause.disabled=false;this.ui.pause.innerHTML='Pause <kbd>P</kbd>';
+    this.ui.message.textContent='Amber markers warn where the next spike will fall. Stars restore hearts.';
+    this.physics.resume();this.anims.resumeAll();if(this.music){this.music.stop();this.music.play();}if(this.endSound)this.endSound.stop();
+    this.game.canvas.tabIndex=0;this.game.canvas.setAttribute('aria-label','Dodge arena. Use arrow keys to move, jump and duck.');this.game.canvas.focus();
+    this.updateHud();
+  }
+  updateHud() {
+    this.ui.score.textContent=String(Math.floor(this.score)).padStart(4,'0');
+    this.ui.lives.textContent='♥ '.repeat(this.lives).trim() || '—';
+    this.ui.lives.setAttribute('aria-label',this.lives+' hearts remaining');
+    this.ui.wave.textContent='WAVE '+String(this.wave).padStart(2,'0')+' / '+Math.floor(this.timer/1000)+'s';
+    this.ui.effect.textContent=this.effectRemaining>0?this.effectName+' · '+Math.ceil(this.effectRemaining/1000)+'s':'Read the warning. Find your gap.';
+  }
+  showRecords() {
+    this.ui.records.innerHTML='';
+    this.records.forEach((record,index)=>{const row=document.createElement('li');row.textContent=String(index+1).padStart(2,'0')+'   '+record.score+' points   /   '+record.seconds+'s';this.ui.records.appendChild(row);});
+  }
+  togglePause() {
+    if(this.state!=='running'&&this.state!=='paused')return;
+    this.paused=this.state==='running';this.state=this.paused?'paused':'running';this.releaseInput();
+    this.ui['run-panel'].hidden=!this.paused;
+    this.ui.pause.innerHTML=this.paused?'Resume <kbd>P</kbd>':'Pause <kbd>P</kbd>';
+    if(this.paused){
+      this.physics.pause();this.anims.pauseAll();if(this.music)this.music.pause();
+      this.ui['panel-eyebrow'].textContent='TAKE A BREATHER';this.ui['panel-title'].textContent='Your run is safe.';
+      this.ui['panel-copy'].textContent='The arena, pickups and timer are frozen. Pick up exactly where you left off.';
+      this.ui.primary.textContent='Resume run';this.ui.rules.hidden=false;this.ui.records.hidden=true;
+      this.ui['panel-note'].textContent='P or Escape also resumes. Arrow keys move, jump and duck.';this.ui.primary.focus();
+    }else{this.physics.resume();this.anims.resumeAll();if(this.music)this.music.resume();this.game.canvas.focus();}
+  }
+  spikeCollision(spike) {
+    if(this.state!=='running'||this.invulnerable>0)return;
+    spike.destroy();this.lives=Math.max(0,this.lives-1);this.invulnerable=1200;
+    this.ui.message.textContent=this.lives?'Hit! Brief protection gives you time to find a gap.':'Run complete.';
+    this.cameras.main.flash(100,185,95,48,false);this.updateHud();
+    if(this.lives===0)this.gameOverFunc();
+  }
+  powerUpCollision(pickup) {
+    if(this.state!=='running')return;
+    const type=pickup.getData('kind');pickup.destroy();
+    if(type==='heart'){this.lives=Math.min(5,this.lives+1);this.score+=50;this.ui.message.textContent='Star collected · +50 points and one heart (maximum five).';}
+    else{this.effectRemaining=6000;this.effectName=type==='reverse'?'REVERSED CONTROLS':'QUICK FEET';this.playerMovementHelper.updateSpeed(type==='reverse'?-500:700);this.ui.message.textContent=type==='reverse'?'Reverse pickup! Left and right swap for six seconds.':'Speed pickup! Quick feet for six seconds.';}
+    this.updateHud();
+  }
   addSpike() {
-    this.spikes
-      .create(Math.random() * 1280, -100, "spike")
-      .setScale(Math.random() * (1 - 0.4) + this.spikeMax);
+    const x=60+Math.random()*1160;
+    const marker=this.add.text(x,25,'▼',{font:'bold 32px Arial',fill:'#a55516'}).setOrigin(.5);
+    this.pending.push({x,remaining:750,marker});
   }
-
   addPowerUp() {
-    let random = Math.floor(Math.random() * 9);
-    let scaleNumb = Math.random() * 0.14 + 0.1;
-    switch (random) {
-      case 0:
-        this.powerUps
-          .create(Math.random() * 1280, -100, "reverse 500")
-          .setScale(scaleNumb);
-        break;
-
-      case 1:
-        this.powerUps
-          .create(Math.random() * 1280, -100, "reverse 700")
-          .setScale(scaleNumb);
-        break;
-
-      case 2:
-        this.powerUps
-          .create(Math.random() * 1280, -100, "reverse 1000")
-          .setScale(scaleNumb);
-        break;
-
-      case 3:
-        this.powerUps
-          .create(Math.random() * 1280, -100, "powerUp 500")
-          .setScale(scaleNumb);
-        break;
-
-      case 4:
-        this.powerUps
-          .create(Math.random() * 1280, -100, "powerUp 700")
-          .setScale(scaleNumb);
-        break;
-
-      case 5:
-        this.powerUps
-          .create(Math.random() * 1280, -100, "reverse 1000")
-          .setScale(scaleNumb);
-        break;
-
-      case 6:
-        this.powerUps
-          .create(Math.random() * 1280, -100, "powerUp 500")
-          .setScale(scaleNumb);
-        break;
-
-      case 7:
-        this.powerUps
-          .create(Math.random() * 1280, -100, "powerUp 700")
-          .setScale(scaleNumb);
-        break;
-
-      case 8:
-        let numb = Math.floor(Math.random() * 3);
-        if (numb === 2)
-          this.powerUps
-            .create(Math.random() * 1280, -100, "star 0")
-            .setScale(0.12);
-        break;
-    }
+    const roll=Math.random(),kind=roll<.55?'heart':roll<.8?'speed':'reverse';
+    const key=kind==='heart'?'star 0':kind==='speed'?'powerUp 700':'reverse 500';
+    const item=this.powerUps.create(60+Math.random()*1160,-40,key).setDisplaySize(44,44);
+    item.setData('kind',kind);item.body.setAllowGravity(false);item.setVelocityY(160);item.setSize(item.width*.8,item.height*.8,true);
   }
-
   gameOverFunc() {
-    //
-
-    this.name = this.add.text(390, 290, `${this.yourName} you scored:`, {
-      fontSize: "50px",
-      fill: "#f6ff00"
+    if(this.state==='over')return;
+    this.state='over';this.gameOver=true;this.physics.pause();this.anims.pauseAll();this.releaseInput();
+    if(this.music)this.music.stop();if(this.endSound)this.endSound.play();
+    const result=saveRun(window.localStorage,this.score,this.timer/1000);this.records=result.records;
+    this.ui.best.textContent=String(this.records[0].score).padStart(4,'0');this.ui.pause.disabled=true;
+    this.ui['run-panel'].hidden=false;this.ui['panel-eyebrow'].textContent='EVERY RUN TEACHES YOU SOMETHING';
+    this.ui['panel-title'].textContent=Math.floor(this.score)+' points. Nice footwork.';
+    this.ui['panel-copy'].textContent='You survived '+Math.floor(this.timer/1000)+' seconds and reached wave '+this.wave+'. Read the drop markers and leave yourself an escape route.';
+    this.ui.primary.textContent='One more run';this.ui.rules.hidden=true;this.ui.records.hidden=false;
+    this.ui['panel-note'].textContent=result.saved?'Your five best runs · saved on this device':'Storage unavailable · records kept for this session only';
+    this.showRecords();this.ui.primary.focus();
+  }
+  update(time,delta) {
+    if(this.state!=='running')return;
+    const dt=Math.min(delta,80);this.timer+=dt;this.score+=dt*.01;this.spawnElapsed+=dt;this.pickupElapsed+=dt;
+    this.wave=1+Math.floor(this.timer/20000);
+    this.invulnerable=Math.max(0,this.invulnerable-dt);this.player.setAlpha(this.invulnerable>0?(Math.floor(this.invulnerable/120)%2?.4:1):1);
+    if(this.effectRemaining>0){this.effectRemaining-=dt;if(this.effectRemaining<=0){this.playerMovementHelper.reset();this.ui.message.textContent='Normal controls restored.';}}
+    if(this.spawnElapsed>=Math.max(340,1100-(this.wave-1)*130)){this.spawnElapsed=0;this.addSpike();}
+    if(this.pickupElapsed>=5500){this.pickupElapsed=0;this.addPowerUp();}
+    this.pending=this.pending.filter(item=>{
+      item.remaining-=dt;item.marker.setAlpha(.45+.55*Math.abs(Math.sin(item.remaining/110)));
+      if(item.remaining>0)return true;
+      item.marker.destroy();const spike=this.spikes.create(item.x,-38,'spike').setDisplaySize(54,54);
+      spike.setCircle(spike.width*.36,spike.width*.14,spike.height*.14);spike.body.setAllowGravity(false);spike.setVelocityY(Math.min(390,245+this.wave*18));return false;
     });
-
-    this.textEntry = this.add.text(
-      500,
-      340,
-      `${Number(Math.floor(this.timer / 50))} points !`,
-      {
-        fontSize: "50px",
-        fill: "#fff"
-      }
-    );
-
-    this.gameOver = "Ended";
-
-    this.replayButtonFunc();
-  }
-
-  clearMemo() {
-    if (this.gameOver !== "Ended") {
-      let spikes = this.spikes.children.entries;
-      let spikesLength = this.spikes.children.entries.length - 1;
-      let powerUps = this.powerUps.children.entries;
-      let powerUpsLength = this.powerUps.children.entries.length - 1;
-
-      if (spikes[0] !== undefined && spikes[0].y > 1000) {
-        spikes[0].destroy();
-      }
-
-      if (powerUps[0] !== undefined && powerUps[0].y > 1000) {
-        powerUps[0].destroy();
-      }
-    }
-  }
-
-  resetVars() {
-    this.timer = 0;
-    this.lives = 3;
-    this.walkSpeed = 500;
-    this.croutchSpeed = this.walkSpeed - 100;
-    this.spikeMax = 0.4;
-    this.gameOver = false;
-    this.replayButton.destroy();
-    this.music.play();
-    this.playerMovementHelper.reset();
-
-    this.livesText.setText("Lives: " + this.lives);
-  }
-
-  replayButtonFunc() {
-    this.add.tween({
-      targets: this.replayButton,
-      ease: "Sine.easeInOut",
-      y: 540,
-      x: 640,
-      duration: 2000,
-      delay: 0,
-      alpha: 0,
-      onComplete: () => {
-        this.replayButton.setScale(0.2);
-        this.add.tween({
-          targets: this.replayButton,
-          ease: "Sine.easeInOut",
-          duration: 2000,
-          delay: 0,
-          alpha: 1,
-          yoyo: true,
-          repeat: -1
-        });
-      }
-    });
-
-    this.replayButton.setInteractive();
-    this.spikes.children.entries = [];
-
-    this.replayButton.on("clicked", () => {
-      //auth.createNewScore("bubu", 1000);
-
-      let score = Number(Math.floor(this.timer / 50));
-      let minScore = this.checkMin();
-
-      if (score > minScore.score) {
-        this.scores = this.scores.filter(item => item._id !== minScore.id);
-        this.scores.push({ _id: `demo-${Date.now()}`, score: Number(score), name: this.yourName });
-        this.updateScores();
-      }
-
-      this.name.destroy(), this.textEntry.destroy(), this.resetVars();
-    });
-  }
-
-  //Movement
-  update() {
-    //Checking if game is over
-    if (this.gameOver === false) {
-      this.timer++;
-      this.crouched = false;
-      this.scoreText.setText("Score: " + Math.floor(this.timer / 50));
-
-      let score = Math.floor(this.timer / 50);
-
-      //Checking phase
-      let randomNum = Math.floor(Math.random() * 10);
-      if (score < 10) {
-        if (this.timer % 20 === 0 || this.timer === 1) {
-          if (randomNum >= 1 && randomNum <= 4) {
-            this.addSpike();
-          } else {
-            this.addPowerUp();
-          }
-        }
-      }
-
-      //Checking phase
-      else if (score >= 10) {
-        if (this.timer % 10 === 0 || this.timer === 1) {
-          if (randomNum >= 1 && randomNum <= 6) {
-            this.addSpike();
-          } else {
-            this.addPowerUp();
-          }
-        }
-      }
-
-      //Preventing memory leaks
-
-      this.crouched = false;
-
-      this.playerMovementHelper.playerMovment(this.cursors);
-    } else if (this.gameOver == "Ended") {
-      this.player.setVelocityX(0);
-      this.player.anims.play("flex", true);
-    }
-
-    this.clearMemo();
+    this.playerMovementHelper.playerMovment(this.cursors);
+    this.shadow.x=this.player.x;this.shadow.setScale(Math.max(.45,1-(645-this.player.y-80)/300));
+    this.spikes.children.entries.slice().forEach(item=>{item.angle+=dt*.06;if(item.y>780)item.destroy();});
+    this.powerUps.children.entries.slice().forEach(item=>{if(item.y>780)item.destroy();});
+    this.updateHud();
   }
 }

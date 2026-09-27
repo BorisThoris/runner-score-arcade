@@ -8,7 +8,7 @@ var config = {
   parent: "phaser-example",
   width: 1280,
   height: 720,
-  backgroundColor: "#7d7d7d",
+  backgroundColor: "#eadbc6",
   physics: {
     default: "arcade",
     arcade: {
