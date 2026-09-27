@@ -1,8 +1,8 @@
 {
   "slug": "runner-score-arcade",
-  "capturedAt": "2026-09-27T17:51:57.849Z",
-  "source": "local",
-  "url": "http://127.0.0.1:4511/",
+  "capturedAt": "2026-09-27T18:13:02.854Z",
+  "source": "deployment",
+  "url": "https://runner-score-arcade-git.pages.dev/",
   "recipe": {
     "route": "/",
     "readySelector": "#primary:not(:disabled)",
@@ -28,7 +28,7 @@
       "file": "card.jpg",
       "width": 1600,
       "height": 900,
-      "bytes": 132382,
+      "bytes": 130420,
       "status": "captured",
       "stats": {
         "mean": 70,
@@ -43,7 +43,37 @@
       "file": "desktop.jpg",
       "width": 1440,
       "height": 900,
-      "bytes": 131654,
+      "bytes": 129112,
+      "status": "captured",
+      "stats": {
+        "mean": 73,
+        "std": 29,
+        "dark": 0,
+        "light": 0,
+        "colours": 9
+      }
+    },
+    {
+      "profile": "mobile",
+      "file": "mobile.jpg",
+      "width": 430,
+      "height": 932,
+      "bytes": 47582,
+      "status": "captured",
+      "stats": {
+        "mean": 63,
+        "std": 33,
+        "dark": 0,
+        "light": 0,
+        "colours": 36
+      }
+    },
+    {
+      "profile": "full",
+      "file": "full.jpg",
+      "width": 1440,
+      "height": 900,
+      "bytes": 114092,
       "status": "captured",
       "stats": {
         "mean": 73,
@@ -54,48 +84,18 @@
       }
     },
     {
-      "profile": "mobile",
-      "file": "mobile.jpg",
-      "width": 430,
-      "height": 932,
-      "bytes": 49489,
-      "status": "captured",
-      "stats": {
-        "mean": 63,
-        "std": 34,
-        "dark": 0,
-        "light": 0,
-        "colours": 47
-      }
-    },
-    {
-      "profile": "full",
-      "file": "full.jpg",
-      "width": 1440,
-      "height": 900,
-      "bytes": 115820,
-      "status": "captured",
-      "stats": {
-        "mean": 74,
-        "std": 29,
-        "dark": 0,
-        "light": 0,
-        "colours": 9
-      }
-    },
-    {
       "profile": "og",
       "file": "og.jpg",
       "width": 1200,
       "height": 630,
-      "bytes": 96338,
+      "bytes": 94163,
       "status": "captured",
       "stats": {
         "mean": 66,
-        "std": 29,
+        "std": 28,
         "dark": 0,
         "light": 0,
-        "colours": 11
+        "colours": 10
       }
     }
   ]
