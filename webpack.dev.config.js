@@ -62,10 +62,16 @@ module.exports = {
           const source = path.join(__dirname, "public");
           const destination = compiler.options.output.path;
           if (!fs.existsSync(source)) return callback();
-          for (const entry of fs.readdirSync(source, { withFileTypes: true })) {
-            if (!entry.isFile()) continue;
-            fs.copyFileSync(path.join(source, entry.name), path.join(destination, entry.name));
-          }
+          const copyDirectory = (from, to) => {
+            fs.mkdirSync(to, { recursive: true });
+            for (const entry of fs.readdirSync(from, { withFileTypes: true })) {
+              const input = path.join(from, entry.name);
+              const output = path.join(to, entry.name);
+              if (entry.isDirectory()) copyDirectory(input, output);
+              else if (entry.isFile()) fs.copyFileSync(input, output);
+            }
+          };
+          copyDirectory(source, destination);
           callback();
         });
       }
