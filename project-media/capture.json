@@ -1,6 +1,6 @@
 {
   "slug": "runner-score-arcade",
-  "capturedAt": "2026-09-27T20:39:15.830Z",
+  "capturedAt": "2026-11-11T21:16:27.058Z",
   "source": "deployment",
   "url": "https://runner-score-arcade-git.pages.dev/",
   "recipe": {
@@ -28,7 +28,7 @@
       "file": "card.jpg",
       "width": 1600,
       "height": 900,
-      "bytes": 130436,
+      "bytes": 132338,
       "status": "captured",
       "stats": {
         "mean": 70,
@@ -43,14 +43,14 @@
       "file": "desktop.jpg",
       "width": 1440,
       "height": 900,
-      "bytes": 129131,
+      "bytes": 131302,
       "status": "captured",
       "stats": {
-        "mean": 73,
+        "mean": 74,
         "std": 29,
         "dark": 0,
         "light": 0,
-        "colours": 9
+        "colours": 10
       }
     },
     {
@@ -58,14 +58,14 @@
       "file": "mobile.jpg",
       "width": 430,
       "height": 932,
-      "bytes": 47613,
+      "bytes": 49629,
       "status": "captured",
       "stats": {
         "mean": 63,
-        "std": 33,
+        "std": 34,
         "dark": 0,
         "light": 0,
-        "colours": 36
+        "colours": 48
       }
     },
     {
@@ -73,14 +73,14 @@
       "file": "full.jpg",
       "width": 1440,
       "height": 900,
-      "bytes": 114187,
+      "bytes": 116017,
       "status": "captured",
       "stats": {
         "mean": 73,
         "std": 29,
         "dark": 0,
         "light": 0,
-        "colours": 9
+        "colours": 10
       }
     },
     {
@@ -88,14 +88,14 @@
       "file": "og.jpg",
       "width": 1200,
       "height": 630,
-      "bytes": 94105,
+      "bytes": 96343,
       "status": "captured",
       "stats": {
         "mean": 66,
-        "std": 28,
+        "std": 29,
         "dark": 0,
         "light": 0,
-        "colours": 10
+        "colours": 11
       }
     }
   ]
